@@ -1,0 +1,64 @@
+---
+title: "Statistical Inference Project"
+author: "Darius Kharazi"
+date: "6/28/2018"
+output: pdf_document
+---
+
+```{r setup, include = FALSE}
+library(knitr)
+library(ggplot2)
+```
+
+## Overview
+
+In this project, we will investigate the exponential distribution in R and compare it with the Central Limit Theorem. The exponential distribution can be simulated in R with rexp(n, lambda) where lambda is the rate parameter. The mean of exponential distribution is 1/lambda, and the standard deviation is also 1/lambda. Our lambda will be set to equal 0.2 for all of the simulations. Lastly, we will investigate the distribution of averages of 40 exponentials, meaning we will need to do a thousand simulations.
+
+First, we will show the sample mean, and we will compare it to the theoretical mean of the distribution containing 1000 samples. Each simulation will contain 40 exponentially distributed random variables, with a lamba equal to 0.2.
+
+This project demonstrates the central limit theorem using exponentially distributed random variables. We are able to observe that the actual mean equals the theoretical mean by averaging the means of thousands of simulated samples with 40 random variables. These averages follow a normal distribution, and as the sample size increases, we are able to notice that both the actual mean and variance become closer and closer to the theoretical mean and variance, respectively.
+
+## Appendix
+
+```{r sampling}
+## Set the seed
+set.seed(1)
+
+## Initialize some parameters
+lambda <- 0.2
+rv <- 40
+samples <- 1000
+
+## Simulate 1000 samples
+mns <- NULL
+for (i in 1:samples) {
+  mns <- c(mns, mean(rexp(rv, rate = lambda)))
+}
+
+## Calculate the actual vs theoretical means and variances
+aMean <- mean(mns)
+aVar <- var(mns)
+tMean <- 1/lambda
+tVar <- (1/lambda)^2/rv
+aMean # actual mean
+aVar # actual variance
+tMean # theoretical mean
+tVar # actual variance
+
+## Calculate the actual vs theoretical variances
+aVar <- var(mns) # actual
+tVar <- (1/lambda^2)/rv # theoretical
+aVar
+tVar
+
+## Plot the histogram marking the actual mean
+par(mfrow = c(1, 2))
+hist(mns, probability = TRUE, col = "blue", main = "Simulations with Actual Mean", xlab = "Means")
+lines(density(mns), col = "green", lwd = 2)
+abline(v = aMean, col = "red", lwd = 2)
+
+## Plot the histogram marking the theoretical mean
+hist(mns, probability = TRUE, col = "blue", main = "Simulations with Theor. Mean", xlab = "Means")
+lines(density(mns), col = "green", lwd = 3)
+abline(v = tMean, col = "orange", lwd = 2) # theoretical
+```
