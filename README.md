@@ -1,4 +1,4 @@
-Overview
+## Overview
 
 We will investigate the exponential distribution in R and compare it with the Central Limit Theorem. The exponential distribution can be simulated in R with rexp(n, lambda) where lambda is the rate parameter. The mean of exponential distribution is 1/lambda, and the standard deviation is also 1/lambda. Our lambda will be set to equal 0.2 for all of the simulations. Lastly, we will investigate the distribution of averages of 40 exponentials, meaning we will need to do a thousand simulations. In summary, we will show the sample mean, and we will compare it to the theoretical mean of the distribution containing 1000 samples. Each simulation will contain 40 exponentially distributed random variables, with a lamba equal to 0.2.
 
