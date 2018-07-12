@@ -18,6 +18,10 @@ First, we will show the sample mean, and we will compare it to the theoretical m
 
 This project demonstrates the central limit theorem using exponentially distributed random variables. We are able to observe that the actual mean equals the theoretical mean by averaging the means of thousands of simulated samples with 40 random variables. These averages follow a normal distribution, and as the sample size increases, we are able to notice that both the actual mean and variance become closer and closer to the theoretical mean and variance, respectively.
 
+<p align="center">
+  <img width="400" height="400" src="/graphics/plot1.png">
+</p>
+
 ## Appendix
 
 ```{r sampling}
